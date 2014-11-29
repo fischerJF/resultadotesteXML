@@ -26,6 +26,19 @@
 			</batchtest>
 		</junit>
 	</target>
+	<target name="bach" depends="test">
+		<junit fork="yes" forkmode="once"  printsummary="true" showoutput="true" failureproperty="failed-test" haltonfailure="true" >
+			<formatter type="xml" usefile="true" />
+			<classpath location="target/classes-test/" />
+			<classpath refid="tests.classpath" />
+			<batchtest fork="yes" todir="${artifacts.dir}/reports">
+				<fileset dir="target/classes-test/" >
+					<include name="**/*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
 	<target name="jar" depends="test">
 		<jar destfile="target/jenkins-exemplo.jar" basedir="target/classes/" />
 	</target>
